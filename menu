@@ -1,0 +1,84 @@
+// ej_menu.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+
+using namespace std;
+     float poten(float b, int e);
+     int fact(int n);
+	 float serie(float x, float y);
+
+
+void main()
+{
+   float b, pot, fac, ser,  x, y;
+   int opcion, e, n;
+   do {
+     cout << endl;
+     cout << "1.- Potencia" << endl;
+     cout << "2.- Factorial" << endl;
+     cout << "3.- Serie" << endl;
+	 cout << "0.- Salir" << endl;
+     cout << "Elige una opción: " ;
+     cin >> opcion;
+     switch (opcion) 
+	 {
+	 case 1: {cout<<"Ingrese el valor de la base: ";
+		     cin>>b;
+			 cout<<"Ingrese el valor del exponente: ";
+		     cin>>e;
+			 pot= poten(b,e);
+			 cout<<"La potencia de "<<b<<"elevado a "<<e<<"es:"<<pot;
+			 break;}
+	 case 2: {cout<<"Ingrese el numero: ";
+		     cin>> n;
+			 fac=fact(n);
+			 cout<<"El factorial de "<<n<<"es: "<<fac;
+			 break;}
+	 case 3: {cout<<"Ingrese el valor de X: ";
+		     cin>>x;
+			 cout<<"Ingrese el valor de Y: ";
+			 cin>>y;
+			 ser=serie(x,y);
+			 cout<<"La suma de la serie es: "<<ser;
+			 break;}
+	 case 0: {
+		     cout<<"salir";
+			 break;}
+	 default:
+		     cout<<"Opcion invalida";
+	 
+	 }
+	 
+	getch();
+	system("cls"); // Limpia la pantalla
+  }	while(opcion!=0); // mientras sea opción diferente de 0
+
+  
+}
+
+float poten(float b, int e)
+{
+	float P=1; // Acumulador de producto
+	for (int i=1;i<=e;i++)
+		P=P*b;
+	return P;
+}
+
+int fact(int n)
+{
+	int P=1; // Acumulador de producto
+	for (int i=2;i<=n;i++) // i es contador
+		P=P*i;
+	return P;
+}
+
+float serie (int x, int y)
+{
+	float S=0; // Acumulador de Suma
+	for (int i=1;i<=y;i++) // i es contador
+	    S=S+poten(x,i)/fact(i);
+	return S;
+}
