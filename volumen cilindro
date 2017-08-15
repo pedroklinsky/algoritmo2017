@@ -1,0 +1,31 @@
+// volumen_cilindro.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+
+using namespace std;
+
+float vol_cilindro(float r, float a);
+
+void main()
+{
+	float radio, altura, volumen;
+	cout<<"Ingrese el radio:  ";
+	cin>>radio;
+	cout<<"Ingrese la altura:  ";
+	cin>>altura;
+
+	volumen=vol_cilindro(radio, altura);
+	cout<<"El volumen es: "<<volumen;
+	getch();
+}
+
+float vol_cilindro(float r, float a)
+{float v, pi=3.1416;
+
+v=pi*r*r*a;
+
+return v;
+}
