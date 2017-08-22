@@ -11,35 +11,22 @@ using namespace std;
 void ecuacion(float a, float b, float c, float d, float e, float f, float &x, float &y);
 void main()
 {
-	float a, b, c, d, e, f, r1, r2;
-	do{
+	float a, b, c, d, e, f, m, n;
 	cout<<"Ingrese A: ";
 	cin>>a;
-	  }while (a!=0);
-	do{
 	cout<<"Ingrese B: ";
 	cin>>b;
-	  }while (b!=0);
-	do{
 	cout<<"Ingrese C: ";
 	cin>>c;
-	  }while (c!=0);
-	do{
 	cout<<"Ingrese D: ";
 	cin>>d;
-	  }while (d!=0);
-	do{
 	cout<<"Ingrese E: ";
 	cin>>e;
-	  }while (e!=0);
-	do{
 	cout<<"Ingrese F: ";
 	cin>>f;
-	  }while (f!=0);
-
-	ecuacion(a, b, c, d, e, f, r1, r2);
-	cout<<"\nEl resultado x = "<<r1;
-	cout<<"\nEl resultado y = "<<r2;
+	ecuacion(a, b, c, d, e, f, m, n);
+	cout<<"\nEl resultado x = "<<m;
+	cout<<"\nEl resultado y = "<<n;
 	getch();
 }
 
