@@ -1,0 +1,51 @@
+// sistema_ec.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+#include "math.h"
+
+using namespace std;
+
+void ecuacion(float a, float b, float c, float d, float e, float f, float &x, float &y);
+void main()
+{
+	float a, b, c, d, e, f, r1, r2;
+	do{
+	cout<<"Ingrese A: ";
+	cin>>a;
+	  }while (a!=0);
+	do{
+	cout<<"Ingrese B: ";
+	cin>>b;
+	  }while (b!=0);
+	do{
+	cout<<"Ingrese C: ";
+	cin>>c;
+	  }while (c!=0);
+	do{
+	cout<<"Ingrese D: ";
+	cin>>d;
+	  }while (d!=0);
+	do{
+	cout<<"Ingrese E: ";
+	cin>>e;
+	  }while (e!=0);
+	do{
+	cout<<"Ingrese F: ";
+	cin>>f;
+	  }while (f!=0);
+
+	ecuacion(a, b, c, d, e, f, r1, r2);
+	cout<<"\nEl resultado x = "<<r1;
+	cout<<"\nEl resultado y = "<<r2;
+	getch();
+}
+
+void ecuacion(float a, float b, float c, float d, float e, float f, float &x, float &y)
+{
+	y = (a*f - c*d)/(b*d -a*e);
+	x = (-c - b*y)/a;
+	getch();
+}
