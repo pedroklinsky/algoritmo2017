@@ -1,0 +1,124 @@
+// palindromo.cpp : Defines the entry point for the console application.
+//concatenar dos vectores
+
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+#include <string>
+#include "stdlib.h"
+#define MAX 100
+
+using namespace std;
+
+float area(float a, float b);
+void cargarvector1 (int a[], int tamanio);
+void cargarvector2 (int a[], int tamanio);
+void mostrarvector (int a[], int tamanio);
+string invertir(string var3);
+
+void main()
+{
+	float base, altura, areapar;
+	int a[MAX];
+	int tamanio, opcion;
+	string cadena;
+
+ do{
+		cout<<"    Menu"<<endl;
+		cout<<"=============="<<endl;
+		cout<<"1.-Area paralelogramo"<<endl;
+		cout<<"2.-Vector"<<endl;
+		cout<<"3.-Invertir cadena"<<endl;
+		cout<<"0.-Salir"<<endl;
+		cout<<"Elige una opcion:  "<<endl;
+		cin>>opcion;
+	
+
+	switch (opcion)
+	{
+	case 1: {
+		       cout<<"Ingrese base: ";
+			   cin>>base;
+			   cout<<"Ingrese altura: ";
+			   cin>>altura;
+			   areapar=area(altura,base);
+			   cout<<"El area del paralelogramo es: "<<areapar;
+			   break;
+			}
+
+	case 2: {
+		       cout<<"Ingrese el primer vector: ";
+			   cargarvector1(a,tamanio);
+			   cout<<"Ingrese el segundo vector: ";
+			   cargarvector2(a,tamanio);
+			   cout<<"El vector concatenario es: "<<mostrarvector(a,tamanio);
+
+				   break;
+			}
+
+	case 3: { 
+		      cout<<"Ingrese cadena: "<<endl;
+			  cin.ignore();
+		      getline(cin,cadena);
+			  cout<<"La cadena invertida es: "<<invertir(cadena)<<endl;
+			  cin.ignore();
+			  break;
+			}
+	case 0: 
+		    cout<<"Salir del menu.";
+			break;
+	default: 
+		    cout<<"Opcion invalida, ingrese otra opcion.";
+	}
+	system("cls");
+ }while (opcion!=0);
+	getch();
+}
+
+
+float area(float a, float b)
+	{
+		float x; 
+	    x=a*b;
+	    return x;
+	}
+
+string invertir(string var3)
+    {   
+	    int lng;
+        char aux;
+	    string var2=var3;
+        lng=var2.length();
+	 for (int i=0; i<lng/2; i++)
+	{
+		aux=var2.at(i);
+	    var2[i]=var2[lng-1-i];
+		var2[lng-1-i]=aux;
+	}
+	return var2;
+
+    }
+void cargarvector1(int a[], int tamanio)
+{
+	for(int i=0; i<tamanio; i++)
+	{
+		cout<<"v["<<i<<"]=";
+		cin>>a[i];
+	}
+}
+
+void cargarvector2(int a[], int tamanio)
+{
+	for(int i=0; i<tamanio; i++)
+	{
+		cout<<"v["<<i<<"]=";
+		cin>>a[i];
+	}
+}
+void mostrarvector (int a[], int tamanio)
+ {
+	for(int i=0; i<tamanio; i++)
+	{
+	cout<<a[i]<<endl;
+	}
+}
