@@ -1,0 +1,47 @@
+// concatenar.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+#define MAX 100
+using namespace std;
+
+void leervector(float vec[], int n);
+void concatenar (float a[], float b[],float c[], int n, int m);
+
+void main()
+{int n,m;
+float a[MAX],b[MAX],c[MAX];
+    do{
+	cout<<"ingrese el tamanio de su primer vector: ";
+	cin>> n;
+	} while ((n<0)||(n>MAX));
+	do{
+	cout<<"ingrese el tamanio de su segundo vector: ";
+	cin>> m;
+	} while ((m<0)||(m>MAX));
+    leervector(a,n);
+	leervector(b,m);
+	concatenar(a,b,c,n,m);
+getch();	
+}
+
+void leervector(float vec[], int n)
+{for(int i=0; i<n; i++)
+	{cout<<"Vec["<<i+1<<"]= ";
+	cin>>vec[i];
+	}	
+}
+void concatenar (float a[], float b[],float c[], int n, int m)
+{ int l=0;
+	for(int i=0; i<n; i++)
+		{c[l]=a[i];
+		l++;}
+	for(int i=0; i<m; i++)
+		{c[l]=b[i];
+		l++;}
+	cout<<"Los vectores concatenados son: "<<endl;
+	for(int i=0; i<m+n; i++)
+		cout<<"Vec["<<i+1<<"]"<<c[i]<<endl;
+}
