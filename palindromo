@@ -1,0 +1,22 @@
+// palindromo1.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+#include <string>
+
+using namespace std;
+
+void main()
+{string palabra1,palabra2;
+ cout<<"ingrese una palabra"<<endl;
+ cin>>palabra1;
+ for(int i=palabra1.length()-1;i>=0;i--)
+	 palabra2=palabra2+palabra1[i];
+ if(palabra2==palabra1)
+	 cout<<"es palindromo";
+ else 
+ cout<<"no es palindromo pelotudo de mierda";
+ getch();
+}
