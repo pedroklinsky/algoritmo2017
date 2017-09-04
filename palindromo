@@ -17,6 +17,6 @@ void main()
  if(palabra2==palabra1)
 	 cout<<"es palindromo";
  else 
- cout<<"no es palindromo pelotudo de mierda";
+ cout<<"no es palindromo ";
  getch();
 }
