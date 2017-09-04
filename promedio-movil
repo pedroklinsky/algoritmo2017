@@ -1,0 +1,42 @@
+// promedio3.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+#include <string>
+#define MAX 100
+
+using namespace std;
+
+void cargarvector (float v[], int x);
+void promedio(float v[], int x);
+
+void main()
+
+{int n;
+float a[MAX];
+do{	cout<<"ingrese el tamanio de su vector ";
+	cin>>n;
+}while(n<0 || n>MAX);
+cargarvector(a,n);
+promedio(a,n);
+
+getch();
+}
+
+
+void cargarvector (float v[], int x)
+{for(int i=0; i<x; i++)
+	{cout<<"V["<<i+1 <<"]=";
+	 cin>>v[i];
+	}
+}
+
+void promedio (float v[], int x)
+{float p;
+	for(int i=0; i<x-2 ;i++)
+	{p=(v[i]+v[i+1]+v[i+2])/3;
+	cout<<"el promedio "<<i+1 <<" es "<<p<<endl;
+	}
+}
