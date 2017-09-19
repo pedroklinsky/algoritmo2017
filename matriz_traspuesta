@@ -25,7 +25,7 @@ void main()
 	 cout<<"matriz normal"<<endl;
 	 mostrar_matriz (m,F,C);
 	 m_traspuesta (m,F,C);
-	  cout<<"matriz transpuesta";
+	 cout<<"matriz transpuesta";
 	 mostrar_matriz (m,F,C);
 
 	 getch();
@@ -60,9 +60,17 @@ void mostrar_matriz (int m[MAX][MAX],int F, int C)
 {int i, j;
 for ( i=0; i<F; i++)
 	{for (j=0; j<C; j++)
-	   {cout<<"m["<<i<<"]["<<j<<"]= ";
-	    cout<<m[i][j];
+	   {cout<<"m["<<i<<"]["<<j<<"]= "<<m[i][j]<<endl;
+	    
 	   }
 	}
 }
     
+
+
+
+
+
+
+
+
