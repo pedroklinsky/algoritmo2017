@@ -1,0 +1,97 @@
+// arraystruct.cpp : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+#include <string>
+#include "stdlib.h"
+#define max 20
+
+using namespace std;
+
+struct t_estudiante{
+	int nro_estudiante;
+	string nombre;
+	string apellido;
+	string direccion;
+	int telefono;
+	int celular;
+	int nota_practica;
+	int parcial_1;
+	int parcial_2;
+	int parcial_3;
+	int examen_final;
+
+
+};
+
+void cargart_estudiante(t_estudiante vector[],int n);
+void mostrart_estudiantes(t_estudiante vector[],int n);
+float promedio_parcial(t_estudiante vector[],int i);
+
+
+void main()
+{   int n;
+	int cont=1;
+	t_estudiante vector[max];
+	do{
+		cout<<"cantidad de estudiantes: "; 
+		cin>>n;
+	}while(n<0 || n>max);
+	cargart_estudiante(vector,n);
+	cout<<"-----Listado de notas-----"<<endl<<endl;
+	cout<<"Nro \t"<<"Nombre \t"<<"Apellido \t"<<"N.P. \t"<<"P.P. \t"<<"E.F. \t"<<"N.F. \t"<<endl;
+    mostrart_estudiantes(vector, n);
+	getch();
+}
+
+void cargart_estudiante(t_estudiante vector[],int n)
+{
+cin.ignore();
+for (int i=0; i<n ; i++){
+	vector[i].nro_estudiante=i+1;
+	cout<<"ingrese nombre: ";
+    getline(cin,vector[i].nombre);
+	cout<<"ingrese apellido: ";
+    getline(cin,vector[i].apellido);
+	cout<<"ingrese direccion: ";
+    getline(cin,vector[i].direccion);
+	cout<<"ingrese telefono: ";
+	cin>>vector[i].telefono;
+	cout<<"ingrese el nro celular: ";
+	cin>>vector[i].celular;
+	cout<<"Ingrese la nota practica: ";
+	cin>>vector[i].nota_practica;
+	cout<<"Ingrese la nota del primer parcial: ";
+	cin>>vector[i].parcial_1;
+	cout<<"Ingrese la nota del segundo parcial: ";
+	cin>>vector[i].parcial_2;
+	cout<<"Ingrese la nota del tercer parcial: ";
+	cin>>vector[i].parcial_3;
+	cout<<"Ingrese la nota del examen final: ";
+	cin>>vector[i].examen_final;
+	cout<< "\n";
+	cin.ignore();
+  }
+}
+float promedio_parcial(t_estudiante vector[], int i)
+{    float prom;
+	
+	 prom=(vector[i].parcial_1+ vector[i].parcial_2+vector[i].parcial_3)/3.0;
+	return prom;
+}
+
+void mostrart_estudiantes(t_estudiante vector[],int n)
+{
+	for (int i=0; i<n ; i++)
+	{
+	cout<<endl<<vector[i].nro_estudiante<<"\t";
+	cout<<vector[i].nombre<<"\t";
+	cout<<vector[i].apellido<<"\t\t";
+	cout<<vector[i].nota_practica<<"\t";
+	cout<<promedio_parcial(vector,i)<<"\t";
+	cout<<vector[i].examen_final<<"\t";
+	cout<<(vector[i].nota_practica*0.2)+(promedio_parcial(vector,i)*0.4)+(vector[i].examen_final*0.4)<<"\t";
+}
+}
+
