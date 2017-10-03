@@ -23,7 +23,7 @@ int insertar();
 void listar(int N);
 void consultar(int N);
 void modificar(int N);
-void borrar();
+void borrar(int N);
 void clasificar();
 
 void main()
@@ -48,7 +48,7 @@ do{
 	     break;
 	case 4:modificar(N);
 	     break;
-	case 5:borrar();
+	case 5:borrar(N);
 	     break;
 	case 6:clasificar();
 	     break;
