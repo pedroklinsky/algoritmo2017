@@ -24,7 +24,8 @@ void listar(int N);
 void consultar(int N);
 void modificar(int N);
 void borrar(int N);
-void clasificar();
+void clasificar(int N);
+void borrado_fisico(int &N);
 
 void main()
 {int N, opc;
@@ -36,6 +37,7 @@ do{
   cout<<"\n [4]---> Modificar";
   cout<<"\n [5]---> Borrar";
   cout<<"\n [6]---> Clasificar los datos";
+  cout<<"\n [7]---> Borrado Fisico";
   cout<<"\n [0]---> Salir";
   cout<<"Ingrese la opcion";
   cin>>opc;
@@ -50,7 +52,9 @@ do{
 	     break;
 	case 5:borrar(N);
 	     break;
-	case 6:clasificar();
+	case 6:clasificar(N);
+	     break;
+    case 7:borrado_fisico(N);
 	     break;
 	case 0:cout<<"salir";
 	     break;
@@ -112,6 +116,7 @@ void consultar(int N)
 	}
 	if (band==0)
 		cout<<"ID no encontrado en la base de datos: "<<endl;
+	
 
 }
 void modificar(int N)
@@ -153,13 +158,38 @@ void borrar(int N)
 	for (int i=0; i<N; i++)
 	{  if(a==V[i].numero)
 	   {
-		   V[i].estado=9;
+	       V[i].estado=9;
 	       band=1;
 	   }
 	}
 	if (band==0)
 		cout<<"ID no encontrado en la base de datos: "<<endl;
 }
-void clasificar()
+void clasificar(int N)
 {
+	tintereses aux;
+	for (int i=0; i<N-1; i++)
+	     for(int j=i+1; j<N; j++)
+			 if(V[i].numero>V[j].numero)
+				{aux=V[j];
+	             V[j]=V[i];
+				 V[i]=aux;}
+}
+
+void borrado_fisico(int &N)
+{   //Borrado fisico
+	int a,  band=0;
+	cout<<"Ingrese el ID que quiere borrar: ";
+    cin>>a;
+	for (int i=0; i<N; i++)
+	{  if(a==V[i].numero)
+	   {   for(int j=i+1; j<N; j++)
+	        {V[j-1]=V[j];
+			 N--;
+	         band=1;
+			 return;}
+	   }
+	}
+	if (band==0)
+		cout<<"ID no encontrado en la base de datos: "<<endl;
 }
