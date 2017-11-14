@@ -1,0 +1,183 @@
+// new_project.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+#include <string>
+#include "stdlib.h"
+
+using namespace std;
+
+void alta_directa(void);
+void consulta_directa(void);
+void listado_directo(void);
+void borrado(void);
+
+struct t_cliente
+{
+	int clave_primaria;
+	string nombre;
+	int edad;
+	int UV;
+	char descripcion;
+	int estado;
+	int prec_max;
+	int prec_min;
+};
+
+struct t_proveedor
+{
+	int clave_primaria;
+	string nombre;
+	int UV;
+	string ubicacion;
+	char descripcion;
+	int estado;
+	int prec;
+};
+struct t_factura
+{
+
+};
+
+ t_cliente registro1;
+ FILE *alias1;
+
+ t_proveedor registro2;
+ FILE * alias2;
+
+
+
+
+void main()
+{
+	int n, opc, opc1, opc2;
+
+	do{
+		cout<<"----------------MENU-------------------"<<endl;
+		cout<<"1.-Cliente "<<endl;
+		cout<<"2.-Proveedor "<<endl;
+		cout<<"0.-Salir "<<endl;
+		cout<<"Ingrese la opcion que desea: ";
+		cin>>opc;
+
+		switch(opc)
+		{
+		case 1: {
+			    do
+	    {cout<<"------------Menu Cliente------------"<<endl;
+		cout<<"1.- Adicionar-Insertar "<<endl;
+		cout<<"2.- Listado "<<endl;
+		cout<<"3.- Modificacion "<<endl;
+		cout<<"4.- Consulta "<<endl;
+		cout<<"5.- Borrado "<<endl;
+		cout<<"0.- Salir "<<endl;
+		cout<<"Ingrese la opcion que desea: ";
+		cin>>opc1;
+		switch(opc1)
+		{
+		case 1:
+			{
+				alta_directa();
+				break;
+			}
+		case 2:
+			{
+				
+				break;
+			}
+		case 3:
+			{
+				
+				break;
+			}
+		case 4:
+			{
+				
+				break;
+			}
+		case 5:
+			{
+				
+				break;
+			}
+		case 0:
+			{
+				cout<<"Salir";
+				break;
+			}
+		default:
+			{
+			}
+		}
+		cout<<endl;
+		}while(opc1!=0);
+				}
+
+		case 2:{ do
+	    {cout<<"------------Menu Proveedor------------"<<endl;
+		cout<<"1.- Adicionar-Insertar "<<endl;
+		cout<<"2.- Listado "<<endl;
+		cout<<"3.- Modificacion "<<endl;
+		cout<<"4.- Consulta "<<endl;
+		cout<<"5.- Borrado "<<endl;
+		cout<<"0.- Salir "<<endl;
+		cout<<"Ingrese la opcion que desea: ";
+		cin>>opc2;
+		switch(opc2)
+		{
+		case 1:
+			{
+				alta_directa();
+				break;
+			}
+		case 2:
+			{
+				
+				break;
+			}
+		case 3:
+			{
+				
+				break;
+			}
+		case 4:
+			{
+				
+				break;
+			}
+		case 5:
+			{
+				
+				break;
+			}
+		case 0:
+			{
+				cout<<"Salir";
+				break;
+			}
+		default:
+			{
+			}
+		}
+		cout<<endl;
+		}while(opc2!=0);
+			   }
+	}
+	} while (opc!=0);
+	system("cls");
+	getch();}
+
+void alta_directa(void)
+{int nro_producto, dir_fisica;
+
+ cout<<"Ingreso de producto ";
+ alias1=fopen("PRODUCTO.SEC","rb+");
+ if(alias1=NULL)
+	 fopen("PRODUCTO.SEC","wb+");
+ else
+	 nro_producto;
+ dir_fisica=nro_producto*sizeof(registro1);
+ fseek(alias1,dir_fisica,SEEK_SET);
+ fread(&registro1, sizeof(registro1),1,alias1);
