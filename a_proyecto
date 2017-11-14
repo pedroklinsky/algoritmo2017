@@ -181,3 +181,12 @@ void alta_directa(void)
  dir_fisica=nro_producto*sizeof(registro1);
  fseek(alias1,dir_fisica,SEEK_SET);
  fread(&registro1, sizeof(registro1),1,alias1);
+
+ if(registro1.clave_primaria=nro_producto)
+ cout<<"registro duplicado";
+ fclose(alias1);
+ return
+ else
+ cout<<"Ingrese   registro.........";
+ cin>>registro......
+
