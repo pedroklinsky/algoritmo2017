@@ -1,6 +1,5 @@
-// new_project.cpp : Defines the entry point for the console application.
+// proyecto.cpp : Defines the entry point for the console application.
 //
-
 #include "stdafx.h"
 #include <iostream>
 #include "conio.h"
@@ -15,6 +14,7 @@ void listado_directo(void);
 void borrado(void);
 
 struct t_cliente
+
 {
 	int clave_primaria;
 	string nombre;
@@ -26,7 +26,10 @@ struct t_cliente
 	int prec_min;
 };
 
+
+
 struct t_proveedor
+
 {
 	int clave_primaria;
 	string nombre;
@@ -36,10 +39,16 @@ struct t_proveedor
 	int estado;
 	int prec;
 };
+
 struct t_factura
+
 {
 
+
+
 };
+
+
 
  t_cliente registro1;
  FILE *alias1;
@@ -50,72 +59,74 @@ struct t_factura
 
 
 
+
+
+
+
+
 void main()
+
 {
-	int n, opc, opc1, opc2;
+
+	int a,n, opc, opc1, opc2;
 
 	do{
+
 		cout<<"----------------MENU-------------------"<<endl;
 		cout<<"1.-Cliente "<<endl;
 		cout<<"2.-Proveedor "<<endl;
 		cout<<"0.-Salir "<<endl;
 		cout<<"Ingrese la opcion que desea: ";
 		cin>>opc;
-
+	
 		switch(opc)
 		{
-		case 1: {
-			    do
-	    {cout<<"------------Menu Cliente------------"<<endl;
-		cout<<"1.- Adicionar-Insertar "<<endl;
-		cout<<"2.- Listado "<<endl;
-		cout<<"3.- Modificacion "<<endl;
-		cout<<"4.- Consulta "<<endl;
-		cout<<"5.- Borrado "<<endl;
-		cout<<"0.- Salir "<<endl;
-		cout<<"Ingrese la opcion que desea: ";
-		cin>>opc1;
-		switch(opc1)
-		{
-		case 1:
-			{
-				alta_directa();
-				break;
+		case 1: {//clienteeee
+					do
+			{cout<<"------------Menu Cliente------------"<<endl;
+			cout<<" Estas registrau adulau? "<<endl;
+			cout<<"1.- Si "<<endl;
+			cout<<"2.- No "<<endl;
+			cout<<"3.- No se adulau "<<endl;
+			cout<<"0.- Salir "<<endl;
+			cin>>a;
+			
+			switch(a)
+			{case 1:
+			cout<<"Ingrese su clave primaria";
+			cin>>registro1.clave_primaria;
+			cout<<"buscando en la base de datos espere";
+			cout<<"...3";
+			cout<<"...2";
+			cout<<"...1";
+			cout<<"------------Menu Cliente------------"<<endl;
+			cout<<"1.-Historial"<<endl;
+			cout<<"2.-Realizar nueva busqueda"<<endl;
+			break;
 			}
-		case 2:
-			{
-				
-				break;
+			case 2:
+			{alta_directa();
+			cout<<"------------Menu Cliente------------"<<endl;
+			cout<<"1.-Historial"<<endl;
+			cout<<"2.-Realizar nueva busqueda"<<endl;
+			break;
 			}
-		case 3:
-			{
-				
-				break;
-			}
-		case 4:
-			{
-				
-				break;
-			}
-		case 5:
-			{
-				
-				break;
-			}
-		case 0:
-			{
-				cout<<"Salir";
-				break;
-			}
-		default:
-			{
-			}
-		}
-		cout<<endl;
-		}while(opc1!=0);
+			case 3:
+				{cout<<"porque no te vas bien a la mierda por hacerte el chistosito, adulau";
+				getch();
+				}
+			case 0:
+			cout<<"Gracias por usar el programa "<<endl;break;
+			default :
+			cout<< "opcion invalida";break;
+			
+					}while(a!=0);
 				}
 
-		case 2:{ do
+
+	case 2:
+			{ do
+
 	    {cout<<"------------Menu Proveedor------------"<<endl;
 		cout<<"1.- Adicionar-Insertar "<<endl;
 		cout<<"2.- Listado "<<endl;
@@ -125,68 +136,71 @@ void main()
 		cout<<"0.- Salir "<<endl;
 		cout<<"Ingrese la opcion que desea: ";
 		cin>>opc2;
+
 		switch(opc2)
+
 		{
-		case 1:
-			{
-				alta_directa();
-				break;
-			}
-		case 2:
-			{
-				
-				break;
-			}
-		case 3:
-			{
-				
-				break;
-			}
-		case 4:
-			{
-				
-				break;
-			}
-		case 5:
-			{
-				
-				break;
-			}
-		case 0:
-			{
-				cout<<"Salir";
-				break;
-			}
-		default:
-			{
-			}
-		}
-		cout<<endl;
-		}while(opc2!=0);
-			   }
+
 	}
+
 	} while (opc!=0);
+
 	system("cls");
+
 	getch();}
 
+
+
 void alta_directa(void)
+
 {int nro_producto, dir_fisica;
 
  cout<<"Ingreso de producto ";
  alias1=fopen("PRODUCTO.SEC","rb+");
- if(alias1=NULL)
-	 fopen("PRODUCTO.SEC","wb+");
- else
-	 nro_producto;
- dir_fisica=nro_producto*sizeof(registro1);
- fseek(alias1,dir_fisica,SEEK_SET);
- fread(&registro1, sizeof(registro1),1,alias1);
+	 if(alias1=NULL)
+		 fopen("PRODUCTO.SEC","wb+");
+	 else
+		{ nro_producto;
+	 dir_fisica=nro_producto*sizeof(registro1);
+	 fseek(alias1,dir_fisica,SEEK_SET);
+	 fread(&registro1, sizeof(registro1),1,alias1);
+	 }
+	 if(registro1.clave_primaria=nro_producto)
+	 {cout<<"registro duplicado";
+	 fclose(alias1);
+	 return;
+	 }
+	 else
+	 {cout<<"Ingrese registro"<<endl;
+	 cin>>registro1.clave_primaria;
+	 cout<<"Ingrese su nombre"<<endl;
+	 cin.ignore();
+	 getline(cin,registro1.nombre);
+	 do{cout<<"Ingrese su edad (+18)"<<endl;
+	 cin>>registro1.edad;}
+	 while(registro1.edad<18);
 
- if(registro1.clave_primaria=nro_producto)
- cout<<"registro duplicado";
- fclose(alias1);
- return
- else
- cout<<"Ingrese   registro.........";
- cin>>registro......
+	 }
+ 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+ /*do{cout<<"Ingrese la direccion de su UV"<<endl;
+ cin>>registro1.UV;
+ while(registro1.UV<0);
+ cout<<"Ingrese registro"<<endl;
+ cin>>registro1.clave_primaria;
+ cout<<"Ingrese registro"<<endl;
+ cin>>registro1.clave_primaria;
+ /*
