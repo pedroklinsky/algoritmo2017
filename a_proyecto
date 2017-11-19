@@ -1,188 +1,540 @@
 // proyecto.cpp : Defines the entry point for the console application.
+
 //
+
 #include "stdafx.h"
+
 #include <iostream>
+
 #include "conio.h"
+
 #include <string>
+
 #include "stdlib.h"
+
+
 
 using namespace std;
 
-void alta_directa(void);
+
+
+void alta_directa_c();
+
+void alta_directa_p();
+
+/*
+
 void consulta_directa(void);
+
 void listado_directo(void);
+
 void borrado(void);
+
+*/
+
+void menucliente();
+
+void menuproveedor();
+
+
 
 struct t_cliente
 
+
+
 {
+
 	int clave_primaria;
+
 	string nombre;
+
 	int edad;
+
 	int UV;
+
 	char descripcion;
-	int estado;
+
+	int estado; //borrado logico
+
 	int prec_max;
+
 	int prec_min;
+
 };
+
+
+
+
 
 
 
 struct t_proveedor
 
+
+
 {
+
 	int clave_primaria;
+
 	string nombre;
+
 	int UV;
+
 	string ubicacion;
+
 	char descripcion;
-	int estado;
+
+	float area;
+
+	int estado; //borrado logico
+
 	int prec;
+
 };
+
+
 
 struct t_factura
 
+
+
 {
 
 
 
+
+
+
+
 };
+
+
+
+
 
 
 
  t_cliente registro1;
+
  FILE *alias1;
 
+
+
  t_proveedor registro2;
+
  FILE * alias2;
-
-
-
-
-
-
 
 
 
 void main()
 
-{
 
-	int a,n, opc, opc1, opc2;
+
+{int opc;
 
 	do{
 
 		cout<<"----------------MENU-------------------"<<endl;
+
 		cout<<"1.-Cliente "<<endl;
+
 		cout<<"2.-Proveedor "<<endl;
+
 		cout<<"0.-Salir "<<endl;
+
 		cout<<"Ingrese la opcion que desea: ";
+
 		cin>>opc;
+
 	
+
 		switch(opc)
+
 		{
+
 		case 1: {//clienteeee
-					do
-			{cout<<"------------Menu Cliente------------"<<endl;
+
+			menucliente();
+
+			break;
+
+				}
+
+		case 2:{
+
+			menuproveedor();
+
+			break;
+
+			   }
+
+		case 0: 
+
+			{cout<<"Gracias por usar el programa"<<endl;break;}
+
+		default:
+
+		{cout<<"error"<<endl;break;}
+
+		break;
+
+		}
+
+	}while(opc<0 || opc>2);
+
+getch();
+
+}
+
+void menucliente()
+
+{int a;
+
+	do{
+
+			cout<<"------------Menu Cliente------------"<<endl;
+
 			cout<<" Estas registrau adulau? "<<endl;
+
 			cout<<"1.- Si "<<endl;
+
 			cout<<"2.- No "<<endl;
+
 			cout<<"3.- No se adulau "<<endl;
+
 			cout<<"0.- Salir "<<endl;
+
+			cin.ignore();
+
 			cin>>a;
+
 			
+
 			switch(a)
+
+			{
+
 			{case 1:
-			cout<<"Ingrese su clave primaria";
+
+			cout<<"Ingrese su clave primaria"<<endl;
+
 			cin>>registro1.clave_primaria;
-			cout<<"buscando en la base de datos espere";
-			cout<<"...3";
-			cout<<"...2";
-			cout<<"...1";
+
 			cout<<"------------Menu Cliente------------"<<endl;
+
 			cout<<"1.-Historial"<<endl;
+
 			cout<<"2.-Realizar nueva busqueda"<<endl;
+
 			break;
+
 			}
+
 			case 2:
-			{alta_directa();
+
+			{alta_directa_c();
+
 			cout<<"------------Menu Cliente------------"<<endl;
+
 			cout<<"1.-Historial"<<endl;
+
 			cout<<"2.-Realizar nueva busqueda"<<endl;
+
 			break;
+
 			}
+
 			case 3:
-				{cout<<"porque no te vas bien a la mierda por hacerte el chistosito, adulau";
-				getch();
-				}
+
+			{cout<<"porque no te vas bien a la mierda por hacerte el chistosito, adulau"<<endl;break;
+
+			}
+
 			case 0:
-			cout<<"Gracias por usar el programa "<<endl;break;
+
+				{cout<<"Gracias por usar el programa "<<endl;break;}
+
 			default :
-			cout<< "opcion invalida";break;
+
+				{cout<< "opcion invalida";break;}
+
+			break;
+
+			}
+
+	}while(a<0 || a>3);
+
+}
+
+
+
+void menuproveedor()
+
+{int b;
+
+	do{
+
+			cout<<"------------Menu Proveedor------------"<<endl;
+
+			cout<<" Estas registrau adulau? "<<endl;
+
+			cout<<"1.- Si "<<endl;
+
+			cout<<"2.- No "<<endl;
+
+			cout<<"3.- No se adulau "<<endl;
+
+			cout<<"0.- Salir "<<endl;
+
+			cin.ignore();
+
+			cin>>b;
+
 			
-					}while(a!=0);
-				}
 
+			switch(b)
 
-	case 2:
-			{ do
+			{
 
-	    {cout<<"------------Menu Proveedor------------"<<endl;
-		cout<<"1.- Adicionar-Insertar "<<endl;
-		cout<<"2.- Listado "<<endl;
-		cout<<"3.- Modificacion "<<endl;
-		cout<<"4.- Consulta "<<endl;
-		cout<<"5.- Borrado "<<endl;
-		cout<<"0.- Salir "<<endl;
-		cout<<"Ingrese la opcion que desea: ";
-		cin>>opc2;
+			{case 1:
 
-		switch(opc2)
+			cout<<"Ingrese su clave primaria"<<endl;
 
-		{
+			cin>>registro2.clave_primaria;
 
-	}
+			cout<<"------------Menu Proveedor------------"<<endl;
 
-	} while (opc!=0);
+			cout<<"1.-Ingresar nuevo lote"<<endl;
 
-	system("cls");
+			cout<<"2.-Consulta de lote"<<endl;
 
-	getch();}
+			cout<<"3.-Modificar su anuncio"<<endl;
 
+			cout<<"4.-Borrado de su anuncio"<<endl;
 
+			break;
 
-void alta_directa(void)
+			}
 
-{int nro_producto, dir_fisica;
+			case 2:
 
- cout<<"Ingreso de producto ";
- alias1=fopen("PRODUCTO.SEC","rb+");
-	 if(alias1=NULL)
-		 fopen("PRODUCTO.SEC","wb+");
-	 else
-		{ nro_producto;
-	 dir_fisica=nro_producto*sizeof(registro1);
-	 fseek(alias1,dir_fisica,SEEK_SET);
-	 fread(&registro1, sizeof(registro1),1,alias1);
-	 }
-	 if(registro1.clave_primaria=nro_producto)
-	 {cout<<"registro duplicado";
-	 fclose(alias1);
-	 return;
-	 }
-	 else
-	 {cout<<"Ingrese registro"<<endl;
-	 cin>>registro1.clave_primaria;
-	 cout<<"Ingrese su nombre"<<endl;
-	 cin.ignore();
-	 getline(cin,registro1.nombre);
-	 do{cout<<"Ingrese su edad (+18)"<<endl;
-	 cin>>registro1.edad;}
-	 while(registro1.edad<18);
+			{alta_directa_p();
 
-	 }
+			cout<<"------------Menu Proveedor------------"<<endl;
+
+			cout<<"1.-Ingresar nuevo lote"<<endl;
+
+			cout<<"2.-Consulta de lote"<<endl;
+
+			cout<<"3.-Modificar su anuncio"<<endl;
+
+			cout<<"4.-Borrado de su anuncio"<<endl;
+
+			break;
+
+			}
+
+			case 3:
+
+			{cout<<"porque no te vas bien a la mierda por hacerte el chistosito, adulau"<<endl;break;
+
+			}
+
+			case 0:
+
+				{cout<<"Gracias por usar el programa "<<endl;break;}
+
+			default :
+
+				{cout<< "opcion invalida";break;}
+
+			break;
+
+			}
+
+	}while(b<0 || b>3);
+
+}
+
+void alta_directa_c()
+
+{
+
+ int nro_producto, dir_fisica;
+
+     cout<<"INGRESO DE DATOS "<<endl;
+
+     alias1=fopen("PRODUCTO.DIR","rb+");
+
+  if(alias1==NULL)
+
+   fopen("PRODUCTO.DIR","wb+");
+
+  else{
+
+    cout<<"Ingrese su registro para validar si existe: "<<endl;
+
+   cin>>nro_producto;
+
+  dir_fisica=nro_producto*sizeof(registro1);
+
+  fseek(alias1,dir_fisica,SEEK_SET);
+
+  fread(&registro1, sizeof(registro1),1,alias1);
+
+  }
+
+  if(registro1.clave_primaria==nro_producto)
+
+  {cout<<"registro duplicado";
+
+  fclose(alias1);
+
+  return;}
+
  
 
+  else{
+
+  cout<<"Ingrese registro"<<endl;
+
+  cin>>registro1.clave_primaria;
+
+  cout<<"Ingrese su nombre"<<endl;
+
+  cin.ignore();
+
+  getline(cin,registro1.nombre);
+
+  do{cout<<"Ingrese su edad (+18)"<<endl;
+
+  cin>>registro1.edad;}
+
+  while(registro1.edad<18);
+
+  do{
+
+  cout<<"Ingrese la UV en la que quiere buscar"<<endl;
+
+  cin>>registro1.UV;}while((registro1.UV<0) || (registro1.UV>100));
+
+  do{
+
+  cout<<"Ingrese el tipo de lote que busca; construido(C) o baldio(b)"<<endl;
+
+  cin>>registro1.descripcion;}while((registro1.descripcion!='c') && (registro1.descripcion!='b')); 
+
+  do{
+
+  cout<<"Ingrese precio maximo"<<endl;
+
+  cin>>registro1.prec_max;
+
+  cout<<"Ingrese precio minimo"<<endl;
+
+  cin>>registro1.prec_min;}while((registro1.prec_max>10000000) || (registro1.prec_min<0)); 
+
+  registro1.estado=0;
+
+ 
+
+  registro1.clave_primaria==nro_producto;
+
+     fseek(alias1,dir_fisica,SEEK_SET);
+
+  fwrite(&registro1,sizeof(registro1),1,alias1);
+
+  fclose(alias1);
+
+  return;}
+
+}
+
+void alta_directa_p()
+
+{
+
+ int nro_producto, dir_fisica;
+
+     cout<<"Ingreso de producto ";
+
+     alias2=fopen("PRODUCTO.DIR","rb+");
+
+  if(alias2==NULL)
+
+   fopen("PRODUCTO.DIR","wb+");
+
+  else{
+
+    cout<<"Ingrese el numero del producto: ";
+
+   cin>>nro_producto;
+
+  dir_fisica=nro_producto*sizeof(registro1);
+
+  fseek(alias2,dir_fisica,SEEK_SET);
+
+  fread(&registro2, sizeof(registro1),1,alias1);
+
+  }
+
+  if(registro2.clave_primaria==nro_producto)
+
+  {cout<<"registro duplicado";
+
+  fclose(alias2);
+
+  return;}
+
+ 
+
+  else{
+
+  cout<<"Ingrese registro"<<endl;
+
+  cin>>registro2.clave_primaria;
+
+  cout<<"Ingrese su nombre"<<endl;
+
+  cin.ignore();
+
+  getline(cin,registro2.nombre);
+
+  cout<<"Ingrese la UV en la que se encuentra su producto"<<endl;
+
+  cin>>registro2.UV;
+
+  cout<<"Ingrese el tipo de lote que tiene; construido(C) o valdio(V)"<<endl;
+
+  cin>>registro2.descripcion;
+
+  cout<<"Ingrese su precio "<<endl;
+
+  cin>>registro2.prec;
+
+  cout<<"Ingrese su ubicacion"<<endl;
+
+  cin.ignore();
+
+  getline(cin,registro2.ubicacion);
+
+  cout<<"Ingrese el area del terreno"<<endl;
+
+  cin>>registro2.area;
+
+  registro2.estado=0;
+
+  registro2.clave_primaria==nro_producto;
+
+     fseek(alias2,dir_fisica,SEEK_SET);
+
+  fwrite(&registro2,sizeof(registro2),1,alias2);
+
+  fclose(alias2);
+
+  return;}
+
+}
 
 
 
@@ -193,14 +545,3 @@ void alta_directa(void)
 
 
 
-
-
-
- /*do{cout<<"Ingrese la direccion de su UV"<<endl;
- cin>>registro1.UV;
- while(registro1.UV<0);
- cout<<"Ingrese registro"<<endl;
- cin>>registro1.clave_primaria;
- cout<<"Ingrese registro"<<endl;
- cin>>registro1.clave_primaria;
- /*
