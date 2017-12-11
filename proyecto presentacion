@@ -1,0 +1,1284 @@
+// proyecto.cpp : Defines the entry point for the console application.
+
+//
+
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+#include <string>
+#include "stdlib.h"
+using namespace std;
+void alta_directa_c();
+void alta_directa_p();
+void listado_secuencial_p();
+void listado_secuencial_c();
+void crear_Archivo_Producto_p();
+void crear_Archivo_Producto_c();
+void modificacion_directa_c();
+void modificacion_directa_p();
+void borrado_logico_directa_c();
+void borrado_logico_directa_p();
+void menucliente();
+void menuproveedor();
+void mostrar_resultados(int UV,char descripcion, int preciomax,int preciomin);
+void crear_Archivo_Producto_r();
+void crear_Archivo_Producto_t();
+void factura_t();
+
+struct t_cliente
+{	int clave_primaria;//registro
+	int contra;
+	string nombre;
+
+	int edad;
+
+	int UV;
+
+	char descripcion;
+
+	int prec_max;
+
+	int prec_min;
+
+};
+
+
+
+
+
+
+
+struct t_proveedor
+
+
+
+{
+
+	int clave_primaria;//registro
+	int contra;
+	string nombre;
+
+	int UV;
+
+	string ubicacion;
+
+	char descripcion;
+
+	float area;
+
+	int prec;
+
+};
+
+
+
+struct t_factura
+{	int reg;
+
+	string nombre_cl;
+
+	string nit;
+
+	string nombre_pr;
+
+	int UV;
+
+	string ubicacion;
+
+	char descripcion;
+
+	float area;
+
+	int prec;
+};
+
+
+
+struct t_coincidencia
+{   int UV;
+
+	string ubicacion;
+
+	char descripcion;
+
+	float area;
+
+	int prec;
+	
+	int clave_primaria;
+};
+
+
+
+
+
+
+t_cliente registro1;
+FILE *alias1;
+
+t_proveedor registro2;
+FILE * alias2;
+
+t_coincidencia resultados;
+FILE * alias3;
+
+t_factura factura;
+FILE * alias4; 
+
+
+void main()
+
+
+
+{int opc;
+
+do{system("cls");
+
+cout<<"----------------MENU-------------------"<<endl;
+
+cout<<"1.-Cliente "<<endl;
+
+cout<<"2.-Proveedor "<<endl;
+
+cout<<"0.-Salir "<<endl;
+
+cout<<"Ingrese la opcion que desea: ";
+
+cin>>opc;
+
+
+
+switch(opc)
+
+{
+
+case 1: {//clienteeee
+
+	menucliente();
+
+	break;
+
+		}
+
+case 2:{
+
+	menuproveedor();
+
+	break;
+
+	   }
+
+case 0: 
+
+	{cout<<"Gracias por usar el programa"<<endl;break;}
+
+default:
+
+	{cout<<"error"<<endl;break;}
+
+	break;
+
+}
+
+}while(opc<0 || opc>2);
+
+getch();
+
+}
+
+void menucliente()
+
+{int a,d1,d2;
+
+do{system("cls");
+
+cout<<"------------Menu Cliente------------"<<endl;
+
+cout<<" Estas registrado? "<<endl;
+
+cout<<"1.- Si "<<endl;
+
+cout<<"2.- No "<<endl;
+
+cout<<"0.- Salir "<<endl;
+
+cin.ignore();
+
+cin>>a;
+
+
+
+switch(a)
+
+{int aux_c,reg_c;
+
+	{case 1:
+
+	cout<<"Ingrese su registro"<<endl;
+
+	cin>>reg_c;
+	alias1=fopen("registro1.dir","rb");
+	
+	
+	fread(&registro1,sizeof(registro1),1,alias1); 
+	while(!feof(alias1)) 
+	{if(reg_c==registro1.clave_primaria)
+		{	do{cout<<"Ingrese su contrasena"<<endl;
+			cin>>aux_c;
+			if(aux_c!=registro1.contra)
+				{cout<<"contrasena incorrecta, oprima una tecla y vuelva a intentarlo"<<endl;
+				getch();
+				system ("cls");}
+				
+			}while(aux_c!=registro1.contra);
+		}
+	fread(&registro1,sizeof(registro1),1,alias1);	
+	} 
+	
+	fclose(alias1);	
+
+	do{system("cls");
+
+	cout<<"------------Menu Cliente------------"<<endl;
+
+	cout<<"1.-Historial"<<endl;
+
+	cout<<"2.-Realizar nueva busqueda"<<endl;
+
+	cout<<"3.-Modificar busqueda"<<endl;
+
+	cout<<"4.-Mostrar resultados de busqueda"<<endl;
+
+	cout<<"5.-Borrar busqueda"<<endl;
+
+	cout<<"6.-Comprar/Facturar"<<endl;
+
+	cout<<"0.-Salir"<<endl;
+
+	cin>>d1;
+
+	switch(d1)
+
+	{case 1: system ("cls"); listado_secuencial_c();break;
+
+	case 2: system ("cls"); alta_directa_c();break;
+
+	case 3: system ("cls");modificacion_directa_c();break;
+
+	case 4: system ("cls");mostrar_resultados(registro1.UV,registro1.descripcion,registro1.prec_max,registro1.prec_min);break;
+
+	case 5: system ("cls");borrado_logico_directa_c();break;
+
+	case 6: system ("cls");crear_Archivo_Producto_t();factura_t();break;
+
+	case 0: system ("cls");cout<<"gracias";break;
+
+	}
+
+	}while(d1!=0);
+
+	break;
+
+	}
+
+case 2:
+
+	{system("cls");
+
+	crear_Archivo_Producto_c();
+	crear_Archivo_Producto_r();
+	alta_directa_c();
+
+	do{system("cls");
+
+	cout<<"------------Menu Cliente------------"<<endl;
+
+	cout<<"1.-Historial"<<endl;
+
+	cout<<"2.-Realizar nueva busqueda"<<endl;
+
+	cout<<"3.-Modificar su busqueda"<<endl;
+
+	cout<<"4.-Mostrar resultados de busqueda"<<endl;
+
+	cout<<"5.-Borrado de busqueda"<<endl;
+
+	cout<<"6.-Comprar/facturar"<<endl;
+
+	cout<<"0.-Salir"<<endl;
+
+	cin>>d2;
+
+	switch(d2)
+
+	{case 1: system ("cls"); listado_secuencial_c();break;
+
+	case 2: system ("cls");alta_directa_c();break;
+
+	case 3: system ("cls");modificacion_directa_c();break;
+
+	case 4: system ("cls");mostrar_resultados(registro1.UV,registro1.descripcion,registro1.prec_max,registro1.prec_min);break;
+
+	case 5: system ("cls");borrado_logico_directa_c();break;
+
+	case 6: system ("cls");crear_Archivo_Producto_t();factura_t();break;
+
+	case 0: system ("cls");cout<<"gracias";break;
+
+	}
+
+	}while(d2!=0);
+
+
+
+	break;
+
+	}
+
+case 0:
+
+	{cout<<"Gracias por usar el programa "<<endl;break;}
+
+default :
+
+	{cout<< "opcion invalida";break;}
+
+	break;
+
+}
+
+}while(a<0 || a>4);
+
+}
+
+
+
+void menuproveedor()
+
+{int b,c1,c2;
+
+do{system("cls");
+
+cout<<"------------Menu Proveedor------------"<<endl;
+
+cout<<" Estas registrado? "<<endl;
+
+cout<<"1.- Si "<<endl;
+
+cout<<"2.- No "<<endl;
+
+cout<<"0.- Salir "<<endl;
+
+cin.ignore();
+
+cin>>b;
+
+
+
+switch(b)
+
+{int aux_c,reg_c;
+
+	{case 1:
+
+	cout<<"Ingrese su registro"<<endl;
+
+	cin>>reg_c;
+	
+	cout<<"Ingrese su registro"<<endl;
+
+	cin>>reg_c;
+	alias2=fopen("registro2.dir","rb");
+	
+	
+	fread(&registro2,sizeof(registro2),1,alias2); 
+	while(!feof(alias2)) 
+	{if(reg_c==registro2.clave_primaria)
+		{	do{cout<<"Ingrese su contrasena"<<endl;
+			cin>>aux_c;
+			if(aux_c!=registro2.contra)
+				{cout<<"contrasena incorrecta, oprima una tecla y vuelva a intentarlo"<<endl;
+				getch();
+				system ("cls");}
+				
+			}while(aux_c!=registro2.contra);
+		}
+	fread(&registro2,sizeof(registro2),1,alias2);	
+	} 
+	
+	fclose(alias2);
+
+
+	do{system("cls");
+
+	cout<<"------------Menu Proveedor------------"<<endl;
+
+	cout<<"1.-Ingresar nuevo lote"<<endl;
+
+	cout<<"2.-Listado de anuncios"<<endl;
+
+	cout<<"3.-Modificar su anuncio"<<endl;
+
+	cout<<"4.-Borrado de su anuncio"<<endl;
+
+	cout<<"0.-Salir"<<endl;
+
+	cin>>c2;
+
+	switch(c2)
+
+	{case 1: system ("cls"); alta_directa_p();break;
+
+	case 2: system ("cls");listado_secuencial_p();break;
+
+	case 3: system ("cls");modificacion_directa_p();break;
+
+	case 4: system ("cls");borrado_logico_directa_p();break;
+
+	case 0: system ("cls");cout<<"gracias";break;
+
+	}
+
+	getch();
+
+	}while(c2!=0);
+
+	break;
+
+	}
+
+case 2:
+
+	{system("cls");
+
+	crear_Archivo_Producto_p();
+
+	alta_directa_p();
+
+	do{system("cls");
+
+	cout<<"------------Menu Proveedor------------"<<endl;
+
+	cout<<"1.-Ingresar nuevo lote"<<endl;
+
+	cout<<"2.-Consulta de lote"<<endl;
+
+	cout<<"3.-Modificar su anuncio"<<endl;
+
+	cout<<"4.-Borrado de su anuncio"<<endl;
+
+	cout<<"0.-Salir"<<endl;
+
+	cin>>c1;
+
+	switch(c1)
+
+	{case 1: system ("cls"); alta_directa_p();break;
+
+	case 2: system ("cls");listado_secuencial_p();break;
+
+	case 3: system ("cls");modificacion_directa_p();break;
+
+	case 4: system ("cls");borrado_logico_directa_p();break;
+
+	case 0: system ("cls");cout<<"gracias";break;
+
+	}
+
+	getch();
+
+	}while(c1!=0);
+
+	break;
+
+	}
+
+case 0:
+
+	{cout<<"Gracias por usar el programa "<<endl;break;}
+
+default :
+
+	{cout<< "opcion invalida";break;}
+
+	break;
+
+}
+
+}while(b<0 || b>4);
+
+}
+
+
+
+void crear_Archivo_Producto_c()
+
+{
+
+	fopen("registro1.DIR","wb+");
+
+	if(alias1==NULL){
+
+		cout<<"NO SE CREO EL ARCHIVO "<<endl;
+
+	}else{
+
+		cout<<"ARCHIVO CREADO"<<endl;
+
+	}
+
+
+
+}
+
+void crear_Archivo_Producto_p()
+
+{
+
+	fopen("registro2.DIR","wb+");
+
+	if(alias2==NULL){
+
+		cout<<"NO SE CREO EL ARCHIVO "<<endl;
+
+	}else{
+
+		cout<<"ARCHIVO CREADO"<<endl;
+
+	}
+
+
+
+}
+
+void crear_Archivo_Producto_r()
+
+{
+
+	fopen("resultados.DIR","wb+");
+
+	if(alias3==NULL){
+
+		cout<<"NO SE CREO EL ARCHIVO "<<endl;
+
+	}else{
+
+		cout<<"ARCHIVO CREADO"<<endl;
+
+	}
+}
+void crear_Archivo_Producto_t()
+
+{
+
+	fopen("factura.DIR","wb+");
+
+	if(alias4==NULL){
+
+		cout<<"NO SE CREO EL ARCHIVO "<<endl;
+
+	}else{
+
+		cout<<"ARCHIVO CREADO"<<endl;
+
+	}
+}
+
+void alta_directa_c()
+
+{
+
+	int nro_producto, dir_fisica;
+
+	cout<<"INGRESO DE DATOS "<<endl;
+
+	alias1=fopen("registro1.DIR","rb+");
+
+	if(alias1==NULL)
+
+		cout<<"archivo no existe"<<endl;
+
+	else{
+
+		cout<<"Ingrese su registro para validar si existe: "<<endl;
+
+		cin>>nro_producto;
+
+		dir_fisica=nro_producto*sizeof(registro1);
+
+		fseek(alias1,dir_fisica,SEEK_SET);
+
+		fread(&registro1, sizeof(registro1),1,alias1);
+
+	}
+
+	if(nro_producto==registro1.clave_primaria)
+
+	{cout<<"registro duplicado";
+
+	fclose(alias1);
+
+	return;}
+
+
+
+	else{
+
+		cout<<"Ingrese registro"<<endl;
+
+		cin>>registro1.clave_primaria;
+
+		cout<<"Ingrese su contrasena"<<endl;
+
+		cin>>registro1.contra;
+
+		cout<<"Ingrese su nombre"<<endl;
+
+		cin.ignore();
+
+		getline(cin,registro1.nombre);
+
+		do{cout<<"Ingrese su edad (+18)"<<endl;
+
+		cin>>registro1.edad;}
+
+		while(registro1.edad<18);
+
+		do{
+
+			cout<<"Ingrese la UV en la que quiere buscar"<<endl;
+
+			cin>>registro1.UV;}while((registro1.UV<0) || (registro1.UV>100));
+
+			do{
+
+				cout<<"Ingrese el tipo de lote que busca; construido(C) o baldio(b)"<<endl;
+
+				cin>>registro1.descripcion;}while((registro1.descripcion!='c') && (registro1.descripcion!='b')); 
+
+				do{
+
+					cout<<"Ingrese precio maximo"<<endl;
+
+					cin>>registro1.prec_max;
+
+					cout<<"Ingrese precio minimo"<<endl;
+
+					cin>>registro1.prec_min;}while((registro1.prec_max>10000000) || (registro1.prec_min<0)); 
+
+
+
+					registro1.clave_primaria==nro_producto;
+
+					fseek(alias1,dir_fisica,SEEK_SET);
+
+					fwrite(&registro1,sizeof(registro1),1,alias1);
+
+					fclose(alias1);
+
+					return;}
+
+}
+
+void alta_directa_p()
+
+{
+
+	int nro_producto, dir_fisica;
+
+	cout<<"INGRESO DATOS "<<endl;
+
+	alias2=fopen("registro2.DIR","rb+");
+
+	if(alias2==NULL)
+
+		cout<<"archivo no existe"<<endl;
+
+	else{
+
+		cout<<"Ingrese el numero del producto: "<<endl;
+
+		cin>>nro_producto;
+
+		dir_fisica=nro_producto*sizeof(registro2);
+
+		fseek(alias2,dir_fisica,SEEK_SET);
+
+		fread(&registro2, sizeof(registro2),1,alias2);
+
+	}
+
+	if(registro2.clave_primaria==nro_producto)
+
+	{cout<<"registro duplicado"<<endl;
+
+	fclose(alias2);
+
+	return;}
+
+
+
+	else{
+
+		cout<<"Ingrese registro"<<endl;
+
+		cin>>registro2.clave_primaria;
+
+		cout<<"Ingrese su contrasena"<<endl;
+
+		cin>>registro2.contra;
+
+		cout<<"Ingrese su nombre"<<endl;
+
+		cin.ignore();
+
+		getline(cin,registro2.nombre);
+
+		do{
+
+			cout<<"Ingrese la UV en la que se encuentra su producto"<<endl;
+
+			cin>>registro2.UV;}while(registro2.UV>100);
+
+			do{
+
+				cout<<"Ingrese el tipo de lote que tiene; construido(C) o baldio(B)"<<endl;
+
+				cin>>registro2.descripcion;}while(registro2.descripcion!='c' && registro2.descripcion!='b'); 
+
+				do{
+
+					cout<<"Ingrese su precio (max un millon) "<<endl;
+
+					cin>>registro2.prec;}while(registro2.prec>1000000);
+
+					cout<<"Ingrese su ubicacion"<<endl;
+
+					cin.ignore();
+
+					getline(cin,registro2.ubicacion);
+
+					do{
+
+						cout<<"Ingrese el area del terreno en metros cuadrados"<<endl;
+
+						cin>>registro2.area;}while(registro2.area<0);
+
+						registro2.clave_primaria==nro_producto;
+
+						fseek(alias2,dir_fisica,SEEK_SET);
+
+						fwrite(&registro2,sizeof(registro2),1,alias2);
+
+						fclose(alias2);
+
+						return;}
+
+}
+
+void listado_secuencial_p()
+
+{  
+
+	system("cls"); 
+
+	cout << "\n\rLISTADO DE REGISTROS DE PRODUCTOS"<<endl; 
+
+	alias2=fopen("registro2.DIR","rb"); // Intenta abrir el archivo PRODUCTO.DIR en modo de solo lectura 
+
+	if(alias2==NULL) { 
+
+		cout << "\n\n\n\rNo existe el archivo !!!"<<endl; 
+
+		cout << "\n\r<<< Oprima cualquier tecla para continuar >>>"<<endl; 
+
+		getch(); 
+
+		return; 
+
+	} 
+
+
+
+	cout << "Clave Primaria UV \t Ubicacion \t  Descripcion Area Precio"<<endl; 
+
+	cout << "\n\r------------------------------------------------------------------------"; 
+
+fread(&registro2,sizeof(registro2),1,alias2); 
+
+
+while(!feof(alias2)) 
+
+{
+
+	cout<<"\t"<<registro2.clave_primaria<<"\t"<<registro2.UV<<"\t"<<registro2.ubicacion<<"\t"<<registro2.descripcion<<"\t"<<registro2.area<<"\t"<<registro2.prec<<endl; 
+
+fread(&registro2,sizeof(registro2),1,alias2);	
+
+} 
+
+
+
+
+
+fclose(alias2); 
+
+cout << "\n\r------------------------------------------------------------------------"; 
+
+cout << "\n\rFin del listado !!!"; 
+
+cout << "\n\r<<< Oprima cualquier tecla para continuar >>>"; 
+
+getch(); 
+
+return; 
+
+}
+
+void listado_secuencial_c()
+
+{system("cls"); 
+
+	cout << "\n\rLISTADO DE REGISTROS DE BUSQUEDAS"<<endl; 
+
+	alias1=fopen("registro1.DIR","rb"); // Intenta abrir el archivo PRODUCTO.DIR en modo de solo lectura 
+
+	if(alias1==NULL) { 
+
+		cout << "\n\n\n\rNo existe el archivo !!!"<<endl; 
+
+		cout << "\n\r<<< Oprima cualquier tecla para continuar >>>"<<endl; 
+
+		getch(); 
+
+		return; 
+
+	} 
+
+	cout << "Clave Primaria UV Descripcion Precio Maximo Precio Minimo "<<endl; 
+
+	cout << "\n\r------------------------------------------------------------------------"; 
+
+fread(&registro1,sizeof(registro1),1,alias1); 
+
+// Lee el "Registro", de tamano=sizeof(Registro) del archivo "alias"
+
+while(!feof(alias1)) // Ciclo mientras no se encuentre el final del archivo 
+
+{
+
+	cout<<"\t"<<registro1.clave_primaria<<"\t"<<registro1.UV<<"\t"<<registro1.descripcion<<"\t"<<registro1.prec_max<<"\t\t"<<registro1.prec_min<<endl; 
+
+fread(&registro1,sizeof(registro1),1,alias1);	
+
+} 
+
+
+
+
+
+fclose(alias1); // Cierra el archivo 
+
+cout << "\n\r------------------------------------------------------------------------"; 
+
+cout << "\n\rFin del listado !!!"; 
+
+cout << "\n\r<<< Oprima cualquier tecla para continuar >>>"; 
+
+getch(); 
+
+return;
+
+}
+
+
+
+void modificacion_directa_c()
+
+{ int cp, dir_fisica;
+
+alias1=fopen("registro1.DIR","rb+");
+
+if(alias1==NULL)
+
+{ cout<<"El archivo no existe"<<endl;
+
+return;}
+
+else
+
+{cout<<"Ingrese su numero de registro: "<<endl;
+
+cin>>cp;
+
+dir_fisica=cp*sizeof(registro1);
+
+fseek(alias1,dir_fisica,SEEK_SET);
+
+fread(&registro1, sizeof(registro1),1,alias1);
+
+}
+
+if(registro1.clave_primaria==cp)
+
+{  
+
+  do{
+
+   cout<<"Ingrese la UV en la que quiere buscar"<<endl;
+
+   cin>>registro1.UV;}while((registro1.UV<0) || (registro1.UV>100));
+
+   do{
+
+    cout<<"Ingrese el tipo de lote que busca; construido(C) o baldio(b)"<<endl;
+
+    cin>>registro1.descripcion;}while((registro1.descripcion!='c') && (registro1.descripcion!='b'));
+
+    do{
+
+     cout<<"Ingrese precio maximo"<<endl;
+
+     cin>>registro1.prec_max;
+
+     cout<<"Ingrese precio minimo"<<endl;
+
+     cin>>registro1.prec_min;}while((registro1.prec_max>10000000) || (registro1.prec_min<0));
+
+     registro1.clave_primaria==cp;
+
+     fseek(alias1,dir_fisica,SEEK_SET);
+
+     fwrite(&registro1,sizeof(registro1),1,alias1);
+
+     fseek(alias1,dir_fisica,SEEK_SET);
+
+     fclose(alias1);
+
+     return;}
+
+else
+
+ {cout<<"No existe el archivo";
+
+     fclose(alias1);
+
+  return;}
+
+}
+
+
+
+void modificacion_directa_p()
+
+{ int cp, dir_fisica;
+
+alias2=fopen("registro2.DIR","rb+");
+
+if(alias2==NULL)
+
+{ cout<<"El archivo no existe"<<endl;
+
+return;}
+
+else
+
+{cout<<"Ingrese su numero de registro: "<<endl;
+
+cin>>cp;
+
+dir_fisica=cp*sizeof(registro2);
+
+fseek(alias2,dir_fisica,SEEK_SET);
+
+fread(&registro2, sizeof(registro2),1,alias2);
+
+}
+
+if(registro2.clave_primaria==cp)
+
+{  
+
+  do{
+
+   cout<<"Ingrese la UV en la que se encuentra su producto"<<endl;
+
+   cin>>registro2.UV;}while(registro2.UV>100);
+
+   do{
+
+    cout<<"Ingrese el tipo de lote que tiene; construido(C) o baldio(B)"<<endl;
+
+    cin>>registro2.descripcion;}while(registro2.descripcion!='c' && registro2.descripcion!='b');
+
+    do{
+
+     cout<<"Ingrese su precio (max un millon) "<<endl;
+
+     cin>>registro2.prec;}while(registro2.prec>1000000);
+
+     cout<<"Ingrese su ubicacion"<<endl;
+
+     cin.ignore();
+
+     getline(cin,registro2.ubicacion);
+
+     do{
+
+      cout<<"Ingrese el area del terreno"<<endl;
+
+      cin>>registro2.area;}while(registro2.area<0);
+
+      registro2.clave_primaria==cp;
+
+      fseek(alias2,dir_fisica,SEEK_SET);
+
+      fwrite(&registro2,sizeof(registro2),1,alias2);
+
+      fseek(alias2,dir_fisica,SEEK_SET);
+
+      fclose(alias2);
+
+      return;}
+
+else
+
+ {cout<<"No existe el archivo";
+
+     fclose(alias2);
+
+  return;}
+
+}
+
+
+
+void borrado_logico_directa_c()
+
+{ int cp, dir_fisica;
+
+ alias1=fopen("registro1.DIR", "rb+");
+
+ 
+
+ if(alias1==NULL)
+
+  {cout<<"El archivo no existe";
+
+      return;
+
+     }
+
+ else
+
+  {cout<<"Ingrese su numero de registro: ";
+
+     cin>>cp;
+
+  dir_fisica=cp*sizeof(registro1);
+
+  fseek(alias1,sizeof(registro1),SEEK_SET);
+
+  fread(&registro1,sizeof(registro1),1,alias1);
+
+     }
+
+ if(registro1.clave_primaria==cp)
+
+  {registro1.clave_primaria=0;
+
+   registro1.nombre="----";
+
+   registro1.edad=0;
+
+   registro1.UV=0;
+
+   registro1.descripcion='----';
+
+   registro1.prec_max=0;
+
+   registro1.prec_min=0;
+
+   ftell(alias1);
+
+   fseek(alias1,sizeof(registro1),SEEK_SET);
+
+   fwrite(&registro1,sizeof(registro1),1,alias1);
+
+   fclose(alias1);
+
+   return;
+
+     }
+
+ else
+
+  {cout<<"No existe el archivo";
+
+      fclose(alias1);
+
+   return;
+
+  }
+
+}
+
+void borrado_logico_directa_p()
+
+{int cp, dir_fisica;
+
+ alias2=fopen("registro2.DIR", "rb+");
+
+ 
+
+ if(alias2==NULL)
+
+  {cout<<"El archivo no existe";
+
+      return;
+
+     }
+
+ else
+
+  {cout<<"Ingrese su numero de registro: ";
+
+     cin>>cp;
+
+  dir_fisica=cp*sizeof(registro2);
+
+  fseek(alias2,sizeof(registro2),SEEK_SET);
+
+  fread(&registro2,sizeof(registro2),1,alias2);
+
+     }
+
+ if(registro2.clave_primaria==cp)
+
+  {registro2.clave_primaria=0;
+
+   registro2.nombre="----";
+
+   registro2.UV=0;
+
+   registro2.ubicacion="----";
+
+   registro2.descripcion='----';
+
+   registro2.area=0.0;
+
+   registro2.prec=0;
+
+   ftell(alias2);
+
+   fseek(alias2,sizeof(registro2),SEEK_SET);
+
+   fwrite(&registro2,sizeof(registro2),1,alias2);
+
+   fclose(alias2);
+
+   return;
+
+     }
+
+ else
+
+  {cout<<"No existe el archivo";
+
+      fclose(alias2);
+
+   return;
+
+  }
+
+}
+
+void factura_t()
+{   int registro;
+	alias2=fopen("registro2.DIR","rb");
+	alias4=fopen("factura.DIR","rb");
+	if(alias2==NULL)
+		{cout<<"Verifique sus datos"<<endl; 
+		 fclose(alias2); 
+		 getch();
+		 return;
+		}
+	else
+	{cout<<"Ingrese el registro del lote que desea comprar"<<endl;
+	cin>>registro;
+	fread(&registro2,sizeof(registro2),1,alias2);
+	do{if(registro==registro2.clave_primaria)
+		 factura.reg=registro2.clave_primaria;
+	fread(&registro2,sizeof(registro2),1,alias2);
+	}while(!feof(alias2));
+	cout<<"Ingrese su numero completo: "<<endl;
+	cin.ignore();
+	getline(cin,factura.nombre_cl);
+	cout<<"Ingrese su NIT: "<<endl;
+	cin>>factura.nit;
+	cout<<"############# FACTURA #############"<<endl;
+	cout<<"\tNombre: "<<factura.nombre_cl<<endl;
+	cout<<"\tNIT: " <<factura.nit<<endl;
+	factura.nombre_pr=registro2.nombre;
+	factura.UV=registro2.UV;
+	factura.ubicacion=registro2.ubicacion;
+	factura.descripcion=registro2.descripcion;
+	factura.area=registro2.area;
+	factura.prec=registro2.prec;
+	cout<<"\tDueno del lote: " <<factura.nombre_pr<<endl;
+	cout<<"\tUv del lote: " <<factura.UV<<endl;
+	cout<<"\tUbicacion del lote :"<<factura.ubicacion<<endl;
+	cout<<"\tDescripcion (c)onstruido o (b)aldio :"<<factura.descripcion<<endl;
+	cout<<"\tArea del lote :"<<factura.area<<endl;
+	cout<<"\tPrecio facturado (IVA) :"<<factura.prec*(1.13)<<endl;
+	cout<<"\tGanancia nosotros :"<<factura.prec*(0.05)<<endl;
+
+	fclose(alias2);
+	fclose(alias4);
+	getch();
+	 
+	 return;
+	 }
+
+}
+	 
+
+    
+ 
+void mostrar_resultados(int UV,char descripcion, int preciomax,int preciomin)
+
+{
+
+alias2=fopen("registro2.DIR","rb+");
+
+fread(&registro2,sizeof(registro2),1,alias2); 
+
+while(!feof(alias2)) 
+
+{
+
+    
+
+    if(UV==registro2.UV)
+
+        {if(descripcion==registro2.descripcion)
+
+            {if(preciomax<registro2.prec<preciomin)
+
+            cout<<"Se encontro un anuncio de acuerdo a sus preferencias"<<endl;
+
+            cout<<"Su lote se encuentra en " <<registro2.ubicacion <<" y con un valor de " <<registro2.prec<<endl;
+			getch();
+            }
+
+        }
+
+fread(&registro2,sizeof(registro2),1,alias2);
+} 
+
+
+
+
+
+fclose(alias2);
+}
